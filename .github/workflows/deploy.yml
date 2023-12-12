@@ -25,7 +25,7 @@ jobs:
 
     - name: Log in to ArgoCD
       run: argocd login murierromain.com:8080 --username admin --password miwaber7896MIOP/ --insecure
-      
+
 
     - name: Check if the application exists
       id: check_application
@@ -44,9 +44,7 @@ jobs:
           --path src \
           --dest-namespace default \
           --dest-server https://kubernetes.default.svc \
-          --sync-policy automated \
-          --username RMurier \
-          --password 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
+          --sync-policy automated
 
     - name: Sync application with ArgoCD
       run: argocd app sync TestDotNet
