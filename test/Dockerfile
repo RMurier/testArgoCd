@@ -9,7 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["test/test.csproj", "."]
 RUN dotnet restore "./test.csproj"
-COPY . .
+COPY /test .
 WORKDIR "/src/."
 RUN dotnet build "test.csproj" -c Release -o /app/build
 
