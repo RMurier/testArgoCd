@@ -20,7 +20,7 @@ jobs:
       run: echo dckr_pat_f3gANl63SYVDYTMl8YjTo-fR_lE | docker login --username zyco --password-stdin
 
     - name: Push Docker image
-      run: docker push zyco/testargocd:${{ github.sha }}
+      run: docker push zyco/testargocd:${{ github.sha }} 
       
     - name: Set up kubectl
       uses: azure/setup-kubectl@v1
