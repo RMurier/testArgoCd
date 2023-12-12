@@ -23,7 +23,7 @@ jobs:
         chmod +x /usr/local/bin/argocd
 
     - name: Log in to ArgoCD
-      run: argocd login murierromain.com:8080 --username admin --password miwaber7896MIOP/
+      run: argocd login murierromain.com:8080 --username admin --password miwaber7896MIOP/ --insecure
 
     - name: Sync application with ArgoCD
       run: argocd app sync TestDotNet
