@@ -39,7 +39,7 @@ jobs:
     - name: Create application if not exists
       if: steps.check_application.outputs.exists != 0
       run: |
-        argocd app create dotnet \
+        argocd app create test-dotnet \
           --repo https://github.com/RMurier/testArgoCd \
           --path src \
           --dest-namespace default \
