@@ -40,7 +40,7 @@ jobs:
       run: |
         argocd app create TestDotNet \
           --repo https://github.com/RMurier/testArgoCd \
-          --path path/to/your/application \
+          --path src \
           --dest-namespace default \
           --dest-server https://kubernetes.default.svc \
           --sync-policy automated \
