@@ -56,3 +56,4 @@ jobs:
 
     - name: Sync application with ArgoCD
       run: argocd app sync test-dotnet
+      
