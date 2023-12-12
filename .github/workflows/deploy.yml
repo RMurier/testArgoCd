@@ -6,13 +6,22 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Build Docker image
+      run: docker build -t your-docker-username/your-app-name:${{ github.sha }} .
+
+    - name: Login to Docker Hub
+      run: echo dckr_pat_f3gANl63SYVDYTMl8YjTo-fR_lE | docker login --username your-docker-username --password-stdin
+
+    - name: Push Docker image
+      run: docker push your-docker-username/your-app-name:${{ github.sha }}
+      
     - name: Set up kubectl
       uses: azure/setup-kubectl@v1
       with:
