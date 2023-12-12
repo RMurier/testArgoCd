@@ -47,4 +47,4 @@ jobs:
           --sync-policy automated
 
     - name: Sync application with ArgoCD
-      run: argocd app sync TestDotNet
+      run: argocd app sync test-dotnet
