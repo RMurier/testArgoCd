@@ -35,7 +35,6 @@ jobs:
     - name: Log in to ArgoCD
       run: argocd login murierromain.com:8080 --username admin --password miwaber7896MIOP/ --insecure
 
-
     - name: Check if the application exists
       id: check_application
       run: |
