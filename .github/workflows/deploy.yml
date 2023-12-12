@@ -43,7 +43,9 @@ jobs:
           --path path/to/your/application \
           --dest-namespace default \
           --dest-server https://kubernetes.default.svc \
-          --sync-policy automated
+          --sync-policy automated \
+          --username RMurier \
+          --password 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
 
     - name: Sync application with ArgoCD
       run: argocd app sync TestDotNet
