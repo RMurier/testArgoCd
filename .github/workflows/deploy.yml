@@ -1,4 +1,4 @@
-name: Deploy to ArgoCD
+name: Deploy to ArgoCDs
 
 on:
   push:
