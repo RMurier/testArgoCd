@@ -43,8 +43,7 @@ jobs:
           --path src \
           --dest-namespace default \
           --dest-server https://kubernetes.default.svc \
-          --sync-policy automated \
-          --upsert
+          --directory-recurse
 
     - name: Sync application with ArgoCD
       run: argocd app sync TestDotNet
