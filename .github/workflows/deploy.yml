@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -24,6 +25,25 @@ jobs:
 
     - name: Log in to ArgoCD
       run: argocd login murierromain.com:8080 --username admin --password miwaber7896MIOP/ --insecure
+
+    - name: Check if the application exists
+      id: check_application
+      run: |
+        set +e
+        argocd app get TestDotNet
+        exists=$?
+        set -e
+        echo "::set-output name=exists::$exists"
+
+    - name: Create application if not exists
+      if: steps.check_application.outputs.exists != 0
+      run: |
+        argocd app create TestDotNet \
+          --repo https://github.com/RMurier/testArgoCd \
+          --path path/to/your/application \
+          --dest-namespace default \
+          --dest-server https://kubernetes.default.svc \
+          --sync-policy automated
 
     - name: Sync application with ArgoCD
       run: argocd app sync TestDotNet
