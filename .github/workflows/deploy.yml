@@ -1,12 +1,15 @@
+name: Deploy to ArgoCD
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-    - name: Install ArgoCD CLI
-      run: |
-        wget https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 -O /usr/local/bin/argocd
-        chmod +x /usr/local/bin/argocd
 
+    steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -15,8 +18,13 @@ jobs:
       with:
         kubeconfig: ${{ secrets.KUBE_CONFIG }}
 
+    - name: Install ArgoCD CLI
+      run: |
+        wget https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 -O /usr/local/bin/argocd
+        chmod +x /usr/local/bin/argocd
+
     - name: Log in to ArgoCD
       run: argocd login --username ${{ secrets.ARGOCD_USERNAME }} --password ${{ secrets.ARGOCD_PASSWORD }} ${{ secrets.ARGOCD_SERVER }}
 
     - name: Sync application with ArgoCD
-      run: argocd app sync TestDeployNets
+      run: argocd app sync TestDotNet
